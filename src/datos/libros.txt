@@ -1,0 +1,6 @@
+Primero * Primero * 1.0 * 1
+Segundo * segundo * 2.0 * 2
+Primero * Primero * 1.0 * 1
+Segundo * segundo * 2.0 * 2
+Primero * Primero * 1.0 * 1
+Segundo * segundo * 2.0 * 2

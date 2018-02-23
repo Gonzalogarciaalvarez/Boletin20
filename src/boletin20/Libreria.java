@@ -19,16 +19,25 @@ public static ArrayList<Libro> libros = new ArrayList<>();
     
     public static void engadir() throws IOException{
         
-        String nome = JOptionPane.showInputDialog("Escribe el Nombre");
-        String autor = JOptionPane.showInputDialog("Escribe el Autor");
-        float precio = Float.parseFloat(JOptionPane.showInputDialog("Escribe el Precio"));
-        int unidades = Integer.parseInt(JOptionPane.showInputDialog("Escribe el Unidades"));
+        String nome = JOptionPane.showInputDialog("Escribe el nombre");
+        String autor = JOptionPane.showInputDialog("Escribe el autor");
+        float precio = Float.parseFloat(JOptionPane.showInputDialog("Escribe el precio"));
+        int unidades = Integer.parseInt(JOptionPane.showInputDialog("Escribe la cantidad de libros en stock"));
         Libro libro = new Libro(nome, autor, precio, unidades);
         
         libros.add(libro);
         conexionDatos.guardarDatos();
     }
+
+    public static void visualizar(){
+        
+        libros.forEach((libro) -> {
+            System.out.format("\nTitulo: %s, Autor: %s, Precio: %.2f, Unidades: %d", 
+                    libro.getNome(), libro.getAutor(), libro.getPrecio(), libro.getUnidades());
+    });
+    }
     
+
     public static void consultaPrecio(){
         
         boolean check = false;
@@ -48,31 +57,11 @@ public static ArrayList<Libro> libros = new ArrayList<>();
             }
         }
     }
-    
-    public static void visualizar(){
-        
-        libros.forEach((libro) -> {
-            System.out.format("\nTitulo: %s, Autor: %s, Precio: %.2f, Unidades: %d", 
-                    libro.getNome(), libro.getAutor(), libro.getPrecio(), libro.getUnidades());
-    });
-    }
-    
-    public static void borrar() throws IOException{
-        
-        for (Libro libro: libros){
-            
-            if(libro.getUnidades() < 1){
-                
-                libros.remove(libro); 
-                conexionDatos.guardarDatos(); break;
-            }
-        }
-    }
-    
+     
     public static void modificar() throws IOException{
         
         boolean check = false;
-        String titulo = JOptionPane.showInputDialog("Introduce el titulo a buscar");
+        String titulo = JOptionPane.showInputDialog("Introduce el titulo que quieres modificar");
         
         for (Libro libro: libros){
             
@@ -89,4 +78,16 @@ public static ArrayList<Libro> libros = new ArrayList<>();
             }
         }
 }
+        public static void borrar() throws IOException{
+        
+        for (Libro libro: libros){
+            
+            if(libro.getUnidades() < 1){
+                
+                libros.remove(libro); 
+                conexionDatos.guardarDatos(); break;
+            }
+        }
+    }
+       
 }
